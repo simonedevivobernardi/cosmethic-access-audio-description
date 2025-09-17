@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Audio</title>
+  <style>
+    body { font-family: sans-serif; line-height: 1.5; padding: 2rem; max-width: 600px; margin: auto; }
+    audio { width: 100%; margin: 1rem 0; }
+    .transcript { margin-top: 2rem; background: #f7f7f7; padding: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🎧 Audio Instructions</h1>
+  <p>Press play or download below:</p>
+  
+  <audio controls>
+    <source src="audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <p><a href="audio.mp3" download>⬇️ Download MP3</a></p>
+  
+  <div class="transcript">
+    <h2>Transcript</h2>
+    <p>Paste your transcript text here for full accessibility.</p>
+  </div>
+</body>
+</html>
