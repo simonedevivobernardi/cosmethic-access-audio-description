@@ -1,0 +1,21 @@
+Design Specs Transcript
+
+You are listening to the audio description of the design specifications for Cosmethic Access. 
+This recording lasts about one and a half minutes.
+
+The prototype includes two products: one is a shampoo, and the other is a conditioner. 
+Each product has its own tactile and visual language to aid identification. 
+The bottles, labels, and pumps all use different shapes and colors so they can be distinguished easily.
+
+Braille is embossed on the bottle and communicates the product name, along with the words “ingredients” and “scan me”.
+
+The bottle body is rectangular, with chamfered edges. This improves grip and prevents the bottle from rolling away if dropped.
+
+A reusable pump system is included for simple and controlled product dosage.
+
+The front label uses high-contrast colors and a clear visual language to support quick product identification.
+
+Finally, each bottle carries a Navilens code, which links to a digital label optimized for screen readers. 
+The digital label provides ingredients, instructions, and important product information in an accessible format.
+
+Thank you for listening. A transcript of this description is available next to the product.
