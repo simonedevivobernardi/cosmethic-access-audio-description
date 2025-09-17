@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cosmethic Access — Audio Descriptions</title>
+  <meta name="color-scheme" content="light dark">
+  
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#000000;
+      --card:#ffffff;
+      --accent:#000000;   /* filled buttons */
+      --radius:16px;
+      --project:#0b4e49;  /* teal */
+      --specs:#143a8a;    /* blue */
+      --about:#8a2f10;    /* orange-brown */
+      --contact:#000000;  /* black */
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#000000;
+        --fg:#ffffff;
+        --card:#0f1115;
+        --accent:#ffffff;
+        --project:#65f3e6;
+        --specs:#8ab4ff;
+        --about:#ffb86b;
+        --contact:#ffffff;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html:focus-within{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg);color:var(--fg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.7;-webkit-text-size-adjust:100%;
+    }
+    .wrap{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:24px}
+    main{
+      width:100%;max-width:880px;background:var(--card);border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,.08);padding:clamp(16px,2.4vw,26px);
+      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+    }
+    header h1{margin:0 0 10px 0;font-size:clamp(1.35rem,3.2vw,1.9rem);font-weight:900;color:var(--fg)}
+    p, .meta, .transcript-note{color:var(--fg);font-size:1rem}
+    nav{margin:8px 0 20px 0}
+    nav a{display:inline-block;margin:0 12px 8px 0;text-decoration:underline;color:var(--fg)}
+    .skip-link{position:absolute;top:-40px;left:16px;padding:8px 12px;background:#000;color:#fff;border-radius:8px}
+    .skip-link:focus{top:16px;outline:2px solid #fff;outline-offset:2px}
+    section{margin-top:26px;padding:16px;border-radius:14px;background:#fff;border:3px solid}
+    @media (prefers-color-scheme: dark){section{background:#0f1115}}
+    section>h2{margin:0 0 8px 0;font-size:clamp(1.18rem,2.6vw,1.45rem);font-weight:900}
+    #project{border-color:var(--project)} #project h2{color:var(--project)}
+    #specs{border-color:var(--specs)}   #specs h2{color:var(--specs)}
+    #aboutme{border-color:var(--about)} #aboutme h2{color:var(--about)}
+    #contact{border-color:var(--contact)} #contact h2{color:var(--contact)}
+    audio{width:100%;display:block;margin:12px 0 14px 0}
+
+    /* Button base */
+    .btn-row{display:grid;grid-template-columns:1fr;gap:10px}
+    .btn,.btn:link,.btn:visited{
+      display:inline-block;width:100%;text-align:center;padding:14px 16px;border-radius:12px;
+      text-decoration:none;font-weight:800;letter-spacing:.2px;
+      -webkit-appearance:none;appearance:none;box-shadow:none;opacity:1 !important;
+      background:var(--accent);color:var(--bg) !important;border:2px solid var(--accent);
+    }
+    .btn:hover{filter:brightness(.98)}
+    .btn:active{filter:brightness(.96)}
+    .btn.secondary,.btn.secondary:link,.btn.secondary:visited{
+      background:var(--accent);color:var(--bg) !important;border-color:var(--accent);
+    }
+
+    /* Contact buttons = compact high-contrast outline (not giant white tiles) */
+    .btn.outline,.btn.outline:link,.btn.outline:visited{
+      background:#ffffff;color:#000000 !important;border:2px solid #000000;
+      padding:12px 14px;font-weight:800;
+    }
+    @media (prefers-color-scheme: dark){
+      .btn.outline,.btn.outline:link,.btn.outline:visited{
+        background:#0f1115;color:#ffffff !important;border-color:#ffffff;
+      }
+    }
+
+    /* Transcript toggle styled like a filled button for visibility */
+    details{margin-top:10px}
+    .summary-btn{
+      display:block;cursor:pointer;padding:14px 16px;border-radius:12px;
+      border:2px solid var(--fg);font-weight:800;width:100%;
+      background:var(--fg);color:var(--bg);text-align:center;
+    }
+    details[open] .summary-btn{filter:brightness(.95)}
+    .transcript-box{
+      margin-top:10px;padding:14px;border-radius:12px;border:2px solid;
+      background:#ffffff;color:#000000;font-size:1.02rem;line-height:1.75;
+    }
+    @media (prefers-color-scheme: dark){
+      .transcript-box{background:#111827;color:#ffffff;border-color:#ffffff}
+    }
+    summary::-webkit-details-marker{display:none} /* hide default marker for iOS */
+    footer{margin-top:20px;color:var(--fg);font-size:.98rem;text-align:center}
+    a:focus-visible,button:focus-visible,audio:focus-visible,summary:focus-visible,.summary-btn:focus-visible{
+      outline:3px solid #7c3aed;outline-offset:3px;border-radius:8px
+    }
+
+    @media (max-width:400px){
+      .btn,.btn.outline,.summary-btn{padding:12px 12px;font-size:0.98rem}
+      section{padding:14px}
+    }
+  </style>
+
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to content</a>
+  <div class="wrap">
+    <main role="main" aria-labelledby="title">
+      <header>
+        <h1 id="title">Cosmethic Access — Audio Descriptions</h1>
+        <p class="lead">Three short recordings with downloadable transcripts. Use the buttons to play audio or open transcripts inline.</p>
+        <nav aria-label="Page sections">
+          <a href="#project">About the Project</a>
+          <a href="#specs">Design Specifications</a>
+          <a href="#aboutme">About Me</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section id="project" aria-label="About the Project">
+        <h2>About the Project</h2>
+        <p class="meta">Duration ~2 minutes.</p>
+        <audio controls aria-describedby="project-note">
+          <source src="about-project-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element. <a href="about-project-optimized.mp3">Download the MP3 instead.</a>
+        </audio>
+        <div class="btn-row" role="group" aria-label="Project downloads">
+          <a class="btn" href="about-project-optimized.mp3" download="about-project.mp3">Download MP3</a>
+          <a class="btn secondary" href="about-project-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <p id="project-note" class="transcript-note">If the player doesn’t work on your device, use the download button. A transcript is also available.</p>
+        <details>
+          <summary><span class="summary-btn">Read the transcript</span></summary>
+          <div id="project-transcript" class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">You are listening to the audio description for Cosmethic Access, part of this exhibition.
+This recording lasts about two minutes.
+
+The project is called Cosmethic Access — that’s spelled C-O-S-M-E-T-H-I-C, followed by the word Access. 
+The name itself is a merge between the words cosmetic and ethic.
+
+Hygiene and cosmetic products keep us clean, healthy and fresh, being essential to daily rituals of self-care. 
+Cosmethic Access reframes “cosmetic” as Cosmethic — a fusion of beauty and ethics.
+
+Over 30 million Europeans live with visual impairments, yet hygiene and cosmetic packaging remains largely exclusionary. 
+Cosmethic Access demonstrates that designing with excluded communities is not only possible, but essential. 
+The project was designed in collaboration with members of the Swedish Association for the Blind, whose insights directly shaped the outcomes: tactile ridges, braille, digital accessibility, and ergonomic forms.
+
+The outcome is Lavamus, a speculative haircare brand whose name — Latin for “we wash ourselves” — underscores hygiene as a universal right. 
+The bottles integrate several accessibility features: tactile ridges, distinct shapes and colors, high-contrast reliefs, and embossed braille for key information. 
+The rectangular body with chamfered edges improves grip and prevents the bottle from rolling away if dropped. 
+A reusable pump ensures controlled dosing. 
+A Navilens code links to a screen-reader-optimized digital label.
+
+Beyond the brand, Cosmethic Access reflects on how weaving together design thinking and inclusive design principles can build a process rooted in empathy and care. 
+It shows that inclusive design is not only about adding accessibility features, but about rethinking the foundations of everyday products to create dignity, independence, and equity.
+
+Thank you for listening. To find out more, scan the Navilens code on the bottle, or refer to the transcript available next to this piece.</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="specs" aria-label="Design Specifications">
+        <h2>Design Specifications</h2>
+        <p class="meta">Duration ~1.5 minutes.</p>
+        <audio controls aria-describedby="specs-note">
+          <source src="design-specs-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element. <a href="design-specs-optimized.mp3">Download the MP3 instead.</a>
+        </audio>
+        <div class="btn-row" role="group" aria-label="Design specifications downloads">
+          <a class="btn" href="design-specs-optimized.mp3" download="design-specs.mp3">Download MP3</a>
+          <a class="btn secondary" href="design-specs-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <p id="specs-note" class="transcript-note">If the player doesn’t work on your device, use the download button. A transcript is also available.</p>
+        <details>
+          <summary><span class="summary-btn">Read the transcript</span></summary>
+          <div id="specs-transcript" class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">You are listening to the audio description of the design specifications for Cosmethic Access. 
+This recording lasts about one and a half minutes.
+
+The prototype includes two products: one is a shampoo, and the other is a conditioner. 
+Each product has its own tactile and visual language to aid identification. 
+The bottles, labels, and pumps all use different shapes and colors so they can be distinguished easily.
+
+Braille is embossed on the bottle and communicates the product name, along with the words “ingredients” and “scan me”.
+
+The bottle body is rectangular, with chamfered edges. This improves grip and prevents the bottle from rolling away if dropped.
+
+A reusable pump system is included for simple and controlled product dosage.
+
+The front label uses high-contrast colors and a clear visual language to support quick product identification.
+
+Finally, each bottle carries a Navilens code, which links to a digital label optimized for screen readers. 
+The digital label provides ingredients, instructions, and important product information in an accessible format.
+
+Thank you for listening. A transcript of this description is available next to the product.</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="aboutme" aria-label="About the Designer">
+        <h2>About Me</h2>
+        <p class="meta">Duration ~1 minute.</p>
+        <audio controls aria-describedby="aboutme-note">
+          <source src="about-me-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element. <a href="about-me-optimized.mp3">Download the MP3 instead.</a>
+        </audio>
+        <div class="btn-row" role="group" aria-label="About me downloads">
+          <a class="btn" href="about-me-optimized.mp3" download="about-me.mp3">Download MP3</a>
+          <a class="btn secondary" href="about-me-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <p id="aboutme-note" class="transcript-note">If the player doesn’t work on your device, use the download button. A transcript is also available.</p>
+        <details>
+          <summary><span class="summary-btn">Read the transcript</span></summary>
+          <div id="aboutme-transcript" class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">You are listening to the audio description about the designer of Cosmethic Access.
+This recording lasts about one minute.
+
+Hello, my name is Simone De Vivo Bernardi. I’m an Italian-born, Sweden-based designer passionate about accessible, inclusive, sustainable, and regenerative design.
+
+I hold a Bachelor of Fine Arts in Design + Change, where my thesis on accessible cosmetic packaging was shortlisted for international recognition.
+
+Right now, I’m pursuing a Master’s in Embedded Design at HDK-Valand, University of Gothenburg.
+
+My recent work includes creating an accessible cookbook, and exploring the intersection of design, food, and social impact through co-design with communities.
+
+Thank you for listening. To learn more about my work, you can visit my website or ask a staff member for assistance.</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="contact" aria-label="Contact the Designer">
+        <h2>Contact</h2>
+        <div class="btn-row" role="group" aria-label="Contact options">
+          <a class="btn" href="mailto:design.devivo@gmail.com">Email me: design.devivo@gmail.com</a>
+          <a class="btn" href="https://www.instagram.com/design.devivo" target="_blank" rel="noopener">Instagram: @design.devivo</a>
+          <a class="btn" href="https://www.linkedin.com/in/simonedevivo" target="_blank" rel="noopener">LinkedIn: simonedevivo</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>For assistance in another format or language, please ask a staff member. © Cosmethic Access</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
