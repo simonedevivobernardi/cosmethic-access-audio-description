@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cosmethic Access — Audio Descriptions</title>
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --fg:#000000;
+      --card:#ffffff;
+      --accent:#000000;
+      --radius:16px;
+      --project:#0b4e49; /* teal */
+      --specs:#143a8a;   /* blue */
+      --about:#8a2f10;   /* orange-brown */
+      --contact:#000000; /* black */
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#000000;
+        --fg:#ffffff;
+        --card:#0f1115;
+        --accent:#ffffff;
+        --project:#65f3e6;
+        --specs:#8ab4ff;
+        --about:#ffb86b;
+        --contact:#ffffff;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html:focus-within{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg);color:var(--fg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.7;-webkit-text-size-adjust:100%;
+    }
+    .wrap{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:28px}
+    main{
+      width:100%;max-width:880px;background:var(--card);border-radius:var(--radius);
+      box-shadow:0 8px 24px rgba(0,0,0,.08);padding:clamp(18px,2.5vw,28px)
+    }
+    header h1{margin:0 0 10px 0;font-size:clamp(1.4rem,3.2vw,2rem);font-weight:900;color:var(--fg)}
+    p, .meta, .transcript-note{color:var(--fg);font-size:1rem}
+    nav{margin:10px 0 22px 0}
+    nav a{display:inline-block;margin:0 12px 8px 0;text-decoration:underline;color:var(--fg)}
+    .skip-link{position:absolute;top:-40px;left:16px;padding:8px 12px;background:#000;color:#fff;border-radius:8px}
+    .skip-link:focus{top:16px;outline:2px solid #fff;outline-offset:2px}
+    section{margin-top:34px;padding:20px;border-radius:14px;background:#fff;border:3px solid}
+    @media (prefers-color-scheme: dark){section{background:#0f1115}}
+    section>h2{margin:0 0 8px 0;font-size:clamp(1.22rem,2.6vw,1.55rem);font-weight:900}
+    #project{border-color:var(--project)} #project h2{color:var(--project)}
+    #specs{border-color:var(--specs)}   #specs h2{color:var(--specs)}
+    #aboutme{border-color:var(--about)} #aboutme h2{color:var(--about)}
+    #contact{border-color:var(--contact)} #contact h2{color:var(--contact)}
+    audio{width:100%;display:block;margin:14px 0 18px 0}
+    .btn-row{display:grid;grid-template-columns:1fr;gap:12px}
+    .btn,
+    .btn:link,
+    .btn:visited{
+      display:inline-block;width:100%;text-align:center;padding:16px 18px;border-radius:12px;
+      text-decoration:none;font-weight:900;letter-spacing:.2px;
+      -webkit-appearance:none;appearance:none;box-shadow:none;opacity:1 !important;
+      background:var(--accent);color:var(--bg) !important;border:2px solid var(--accent);
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn.secondary,
+    .btn.secondary:link,
+    .btn.secondary:visited{
+      background:var(--accent);color:var(--bg) !important;border-color:var(--accent);
+    }
+    details{margin-top:12px}
+    details>summary{
+      list-style:none;cursor:pointer;padding:14px 16px;border-radius:12px;
+      border:2px solid currentColor;font-weight:900;width:100%;background:transparent;color:var(--fg)
+    }
+    .transcript-box{
+      margin-top:10px;padding:16px;border-radius:12px;border:2px solid;
+      background:#ffffff;color:#000000;font-size:1.02rem;line-height:1.75;
+    }
+    @media (prefers-color-scheme: dark){
+      .transcript-box{background:#111827;color:#ffffff;border-color:#ffffff}
+    }
+    footer{margin-top:26px;color:var(--fg);font-size:.98rem;text-align:center}
+    a:focus-visible,button:focus-visible,audio:focus-visible,summary:focus-visible{
+      outline:3px solid #7c3aed;outline-offset:3px;border-radius:8px
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#project">Skip to content</a>
+  <div class="wrap">
+    <main role="main" aria-labelledby="title">
+      <header>
+        <h1 id="title">Cosmethic Access — Audio Descriptions</h1>
+        <p class="lead">Three short recordings with downloadable transcripts. Use the buttons to play audio or open transcripts inline.</p>
+        <nav aria-label="Page sections">
+          <a href="#project">About the Project</a>
+          <a href="#specs">Design Specifications</a>
+          <a href="#aboutme">About Me</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section id="project">
+        <h2>About the Project</h2>
+        <p class="meta">Duration ~2 minutes.</p>
+        <audio controls>
+          <source src="about-project-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="btn-row">
+          <a class="btn" href="about-project-optimized.mp3" download="about-project.mp3">Download MP3</a>
+          <a class="btn secondary" href="about-project-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <details>
+          <summary>Read the transcript</summary>
+          <div class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">(Project transcript text...)</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="specs">
+        <h2>Design Specifications</h2>
+        <p class="meta">Duration ~1.5 minutes.</p>
+        <audio controls>
+          <source src="design-specs-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="btn-row">
+          <a class="btn" href="design-specs-optimized.mp3" download="design-specs.mp3">Download MP3</a>
+          <a class="btn secondary" href="design-specs-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <details>
+          <summary>Read the transcript</summary>
+          <div class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">(Specs transcript text...)</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="aboutme">
+        <h2>About Me</h2>
+        <p class="meta">Duration ~1 minute.</p>
+        <audio controls>
+          <source src="about-me-optimized.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="btn-row">
+          <a class="btn" href="about-me-optimized.mp3" download="about-me.mp3">Download MP3</a>
+          <a class="btn secondary" href="about-me-transcript.txt" download>Download transcript (TXT)</a>
+        </div>
+        <details>
+          <summary>Read the transcript</summary>
+          <div class="transcript-box">
+            <pre style="white-space: pre-wrap; margin: 0;">(About me transcript text...)</pre>
+          </div>
+        </details>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="btn-row">
+          <a class="btn" href="mailto:design.devivo@gmail.com">Email me: design.devivo@gmail.com</a>
+          <a class="btn" href="https://www.instagram.com/design.devivo" target="_blank" rel="noopener">Instagram: @design.devivo</a>
+          <a class="btn" href="https://www.linkedin.com/in/simonedevivo" target="_blank" rel="noopener">LinkedIn: simonedevivo</a>
+        </div>
+      </section>
+
+      <footer>
+        <p>For assistance in another format or language, please ask a staff member. © Cosmethic Access</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
